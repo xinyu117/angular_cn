@@ -1,0 +1,2 @@
+project_id,report_date,deadline_from_date,deadline_to_date,create_time,update_time
+'P33','202005',DATE '2022-06-02',DATE '2022-06-17',TIMESTAMP '2022-06-17 15:37:10.593',TIMESTAMP '2022-06-16 15:37:15.857'

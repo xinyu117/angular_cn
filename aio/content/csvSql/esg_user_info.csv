@@ -1,0 +1,2 @@
+project_id,user_id,display_name,mail_address,department,search_label_1,search_label_2,deleted,create_time,update_time
+'P002','userId','xufangmao00','fangmao.xu+neu300@fujixerox.co.jp','department1','PT事務所','富士BI',False,null,null

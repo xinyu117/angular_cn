@@ -1,0 +1,32 @@
+comment,name,type
+案件ID,project_id,varchar(36)
+検索ラベル2,search_label_2,varchar(64)
+レポート年月,report_date,varchar(6)
+締め期間From年月日,deadline_from_date,date
+締め期間To年月日,deadline_to_date,date
+紙削減枚数(ESG),eco_reduced_sheets_esg,integer
+削減電力量(ESG),eco_reduced_power_consumption_esg,double precision
+CO2抑制量(ESG),eco_co2_suppression_amount_esg,double precision
+常緑樹保護(ESG),eco_saved_trees_esg,integer
+ECO推進率,eco_promotion_rate,double precision
+ECO枚数抑制率,eco_sheets_suppression_rate,double precision
+ECO電子化率,eco_digitization_rate,double precision
+ECO全枚数,eco_all_sheets,integer
+ECO推進率順位,eco_promotion_rate_ranking,integer
+プリント削減率,print_reduced_rate,double precision
+プリント枚数抑制率,print_sheets_suppression_rate,double precision
+プリント電子化率,print_digitization_rate,double precision
+プリント全枚数,print_all_sheets,integer
+プリント削減率順位,print_reduced_rate_ranking,integer
+コピー削減率,copy_reduced_rate,double precision
+コピー枚数抑制率,copy_sheets_suppression_rate,double precision
+コピー電子化率,copy_digitization_rate,double precision
+コピー全枚数,copy_all_sheets,integer
+コピー削減率順位,copy_reduced_rate_ranking,integer
+ファクス削減率,fax_reduced_rate,double precision
+ファクス枚数抑制率,fax_sheets_suppression_rate,double precision
+ファクス電子化率,fax_digitization_rate,double precision
+ファクス全枚数,fax_all_sheets,integer
+ファクス削減率順位,fax_reduced_rate_ranking,integer
+作成日時,create_time,timestamp
+更新日時,update_time,timestamp

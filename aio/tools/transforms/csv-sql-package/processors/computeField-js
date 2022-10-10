@@ -1,0 +1,152 @@
+const moment = require('moment');
+module.exports = function computeField(toCamelCase, toPascalCase, tsvToJson, propertyToJson) {
+
+  function createBeanProperty(item, i, property) {
+    const obj = {};
+    Object.assign(obj, item);
+    // obj.property = toCamelCase(item.name);
+    if (obj.search_label_2 != undefined) {
+      const chartList = obj.search_label_2.split('');
+      chartList.shift();
+      chartList.pop();
+      obj.search_label_2 = '\'' + chartList.join('') + String(i).padStart(6, '0') + '\'';
+    }
+    if (obj.search_label_1 != undefined) {
+      const chartList = obj.search_label_1.split('');
+      chartList.shift();
+      chartList.pop();
+      obj.search_label_1 = '\'' + chartList.join('') + String(i).padStart(6, '0') + '\'';
+    }
+
+    if (obj.project_id != undefined) {
+      //obj.project_id = obj.project_id + i;
+    }
+
+    return obj;
+  }
+
+  function createMonths(item, i, property, monthCount) {
+    const months = [];
+    for (let k = 0; k <= monthCount; k++) {
+      const newObj = createBeanProperty(item, i, property);
+      const date = moment(property.report_date, 'YYYYMM').add(k, 'months').format('YYYYMM');
+      newObj.report_date = date;
+      const newValues = Object.values(newObj).join(',');
+
+      months.push(newValues);
+    }
+    return months;
+  }
+
+  function addObj(item) {
+    const obj = {};
+    Object.assign(obj, item);
+    return obj;
+  }
+
+
+  function createBaseObj(doc) {
+    const rowList = doc.data;
+    const newDoc = {
+      docType: 'csv-bean',
+      fileInfo: doc.fileInfo,
+      // className: toPascalCase(doc.fileInfo.baseName),
+      data: []
+    };
+    const baseObj = rowList[0];
+    const keys = Object.keys(baseObj).join(',');
+    const values = Object.values(baseObj).join(',');
+    newDoc.keys = keys;
+    newDoc.values = values;
+    newDoc.baseObj = baseObj;
+    return newDoc;
+  }
+  function expandReport_date(obj, monthCount, reportDate) {
+    const months = [];
+    for (let k = 0; k <= monthCount; k++) {
+      const date = moment(reportDate, 'YYYYMM').add(k, 'months').format('YYYYMM');
+      obj.report_date = date;
+      const newValues = Object.values(obj).join(',');
+
+      months.push(newValues);
+    }
+    return months;
+  }
+  function changeSearch_label_2(obj,index) {
+    const chartList = obj.search_label_2.split('');
+    chartList.shift();
+    chartList.pop();
+    obj.search_label_2 = '\'' + chartList.join('') + String(index).padStart(6, '0') + '\'';
+  }
+  function generateEsg_office_report_info(doc, property) {
+    const newDoc = createBaseObj(doc);
+    const baseObj = newDoc.baseObj;
+    const reportDate = property.report_date;
+    const count = property[doc.fileInfo.baseName].count;
+    const monthCount = property[doc.fileInfo.baseName].monthCount;
+
+    for (let i = 0; i < count; i++) {
+      const addedRow = addObj(baseObj);
+      changeSearch_label_2(addedRow, i);
+      const newValues = expandReport_date(addedRow, monthCount, reportDate);
+      newDoc.data.push(...newValues);
+    }
+    return newDoc;
+  }
+
+  return {
+    $runAfter: ['readFilesProcessor'],
+    $runBefore: ['computeIdsProcessor'],
+    fieldMapping: {
+
+    },
+    $process(docs) {
+      const newDocs = [];
+      // this.fieldMapping = tsvToJson(docs.find(doc => doc.docType === 'dict-tsv').data);
+      this.fieldMapping2 = propertyToJson(docs.find(doc => doc.docType === 'dict-property').data);
+      docs.filter(doc => {
+        if (doc.docType !== 'csv') return true;
+        const rowList = doc.data;
+        const newDoc = {
+          docType: 'csv-bean',
+          fileInfo: doc.fileInfo,
+          // className: toPascalCase(doc.fileInfo.baseName),
+          data: []
+        };
+        // rowList.forEach((row) =>
+        //   newObj.data.push(createBeanProperty(row))
+        // );
+        const baseObj = rowList[0];
+        const keys = Object.keys(baseObj).join(',');
+        const values = Object.values(baseObj).join(',');
+        newDoc.keys = keys;
+        newDoc.values = values;
+
+        if (baseObj.search_label_2 != undefined || baseObj.search_label_1 != undefined) {
+          for (let i = 0; i < 2; i++) {
+            const newValues = createMonths(baseObj, i, this.fieldMapping2, 19);
+            // const newValues = Object.values(newObj).join(',');
+            newDoc.data.push(...newValues);
+          }
+        } else {
+          const newValues = createMonths(baseObj, 0, this.fieldMapping2, 19);
+          // const newValues = Object.values(newObj).join(',');
+          newDoc.data.push(...newValues);
+        }
+
+        generateEsg_office_report_info(doc, this.fieldMapping2);
+
+        newDocs.push(newDoc);
+
+      });
+      return docs.concat(newDocs);
+    }
+  };
+
+};
+
+  // function findKey(obj, fn) {
+  //   const key = Object.keys(obj).find(key => fn(obj[key], key, obj));
+  //   return obj[key];
+  // }
+

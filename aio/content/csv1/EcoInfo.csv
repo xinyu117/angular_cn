@@ -1,0 +1,18 @@
+name, type, comment
+eco_reduced_sheets_esg,integer,紙削減枚数(ESG)
+eco_reduced_power_consumption_esg,double precision,削減電力量(ESG)
+eco_co2_suppression_amount_esg,double precision,CO2抑制量(ESG)
+eco_saved_trees_esg,integer,常緑樹保護(ESG)
+function_counter_print,integer,プリント
+function_counter_nup_print,integer,Nupプリント
+function_counter_both_sides_print,integer,両面プリント
+print_monitor_print_paperless,integer,ペーパーレスプリント
+function_counter_copy,integer,コピー
+function_counter_nup_copy,integer,Nupコピー
+function_counter_both_sides_copy,integer,両面コピー
+function_counter_scan,integer,スキャン
+function_counter_send_fax_paper,integer,ファクス送信(通常送信)
+function_counter_send_fax_pc,integer,ファクス送信(PC送信)
+function_counter_received_fax_paper,integer,ファクス受信(受信出力)
+function_counter_received_fax_paperless,integer,ファクス受信(未出力)
+function_counter_both_sides_fax,integer,両面ファクス

@@ -1,0 +1,2 @@
+project_id,search_label_1,report_date,eco_reduced_sheets_esg,print_monitor_print_logical_page,print_monitor_print_physical_page_saved,print_monitor_print_paperless,reduction_rate,print_sheets_suppression_rate,print_digitization_rate,ranking,last_ranking,up_down_trend,create_time,update_time 
+'P33','PT事務所','202205',1,2,3,4,0.1,0.1,0.1,1,2,'up',TIMESTAMP '2022-06-17 18:06:40.431',TIMESTAMP '2022-06-17 18:06:46.059'

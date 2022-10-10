@@ -1,0 +1,19 @@
+comment,name,type
+案件ID,project_id,varchar(36)
+検索ラベル1,search_label_1,varchar(64)
+レポート年月,report_date,varchar(6)
+集計日時,aggregation_datetime,timestamp
+締め期間From年月日,deadline_from_date,date
+締め期間To年月日,deadline_to_date,date
+紙削減枚数(ESG),eco_reduced_sheets_esg,integer
+論理ページ数,print_monitor_print_logical_page,integer
+物理ページ抑制数,print_monitor_print_physical_page_saved,integer
+ペーパーレスプリント,print_monitor_print_paperless,integer
+削減率,reduction_rate,double precision
+プリント枚数抑制率,print_sheets_suppression_rate,double precision
+プリント電子化率,print_digitization_rate,double precision
+順位,ranking,integer
+順位（前回）,last_ranking,integer
+順位変動,up_down_trend,varchar(32)
+作成日時,create_time,timestamp
+更新日時,update_time,timestamp

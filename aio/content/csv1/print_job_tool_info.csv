@@ -1,0 +1,11 @@
+comment,name,type
+案件ID,project_id,varchar(36)
+UUID,uuid,varchar(36)
+Windowsログインユーザー名,windows_user,varchar(32)
+ADユーザー名,ad_user,varchar(256)
+PC名,pc_name,varchar(1024)
+IPアドレス,ip_adress,varchar(36)
+ツールバージョン,tool_version,varchar(36)
+最終更新日時,last_updated,timestamp
+登録日時,create_time,timestamp
+更新日時,update_time,timestamp

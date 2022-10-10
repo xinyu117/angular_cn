@@ -1,0 +1,2 @@
+project_id,user_id,report_date,windows_user_id,ad_user_id,search_label_1,search_label_2,eco_reduced_sheets_esg,print_monitor_print_logical_page,print_monitor_print_physical_page_saved,print_monitor_print_paperless,reduction_rate,print_sheets_suppression_rate,print_digitization_rate,ranking_in_office,last_ranking_in_office,up_down_trend_in_office,ranking_in_all,last_ranking_in_all,up_down_trend_in_all,create_time,update_time
+'P33','userId','202206','wuid1','adid1','PT事務所','富士BI',2,2,2,2,0.1,0.1,0.1,2,2,'2',2,2,'down',null,null

@@ -1,0 +1,11 @@
+comment,name,type
+案件ID,project_id,varchar(36)
+ユーザーID,user_id,varchar(256)
+表示名,display_name,varchar(181)
+メールアドレス,mail_address,varchar(256)
+所属,department,varchar(256)
+検索ラベル1,search_label_1,varchar(64)
+検索ラベル2,search_label_2,varchar(64)
+論理削除,deleted,boolean
+登録日時,create_time,timestamp
+更新日時,update_time,timestamp
